@@ -1,0 +1,44 @@
+
+.serachBar{
+    margin-top: 13vh;
+    width: 400px;
+    padding: 30px;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+.serachBar .header-txt{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+.serachBar .header-txt h1 {
+    font-family: monospace;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+}
+.serachBar .header-txt button{
+    background: none;
+    border: none;
+    font-size: 1rem;
+    font-family: monospace;
+    cursor: pointer;
+    color: rgb(39, 39, 161);
+}
+.serachBar input{
+    margin-top: 13px;
+    width: 100%;
+    height: 36px;
+    border: 1px solid #eee;
+    background: #eeee;
+    /* background: transparent; */
+    border-radius: 30px;
+    padding: 16px 30px;
+    color: #000;
+    font-size: 1rem;
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+
+}
