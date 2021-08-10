@@ -1,49 +1,39 @@
-
-import React, { Component } from 'react'
-import Header from './componets/header'
-import SearchRsult from './componets/searchRsult';
+import React, {useState} from 'react'
 import './App.css';
-
-export class App extends Component {
-  constructor(props) {
-    super(props);
-    // this.state.saveData = 
-    //  [ {
-    //     name: "jack",
-    //     number: "98641641",
-    //   },
-    //   {
-    //     name: "Ram",
-    //     number: "98641641",
-    //   },
-    //   {
-    //     name: "Ravi",
-    //     number: "98641641",
-    //   },
-    //   {
-    //     name: "Biki",
-    //     number: "98641641",
-    //   }]
-
-      this.state={
-        result:"",
-      };
-  } 
- OnSerach=(val)=>{
-    this.setState({result:val})
-    console.log(this.state.result)
+var phone=[
+  {
+    name:"Pavan"
+  },
+  {
+    name:'akshat'
+  },
+  {
+    name:'Bicky'
+  },
+  {
+    name:"ved"
   }
-  render() {
-    return (
-      <>
-        <div className="container">
-          <Header OnSerach={this.OnSerach}/>
-          {  <SearchRsult />}
-        </div>
-      </>
-    )
+]
+function App() {
+  const [data, setData]=useState(phone);
+  const onChange=(value)=>{
+    var filterArray=phone.filter((item)=>{
+      console.log(item, value)
+      if(item.name.toUpperCase().includes(value.toUpperCase())){
+        return true
+      }
+      return false
+    })
+    console.log(filterArray);
+    setData(filterArray)
+
   }
+  return (
+    <div className="App">
+      <input onChange={(event)=>{onChange(event.target.value)}} placeholder="Search"/>
+      {data.map(item=>(<div>{item.name}</div>))}
+    </div>
+  );
 }
 
-export default App
-
+export default App;
