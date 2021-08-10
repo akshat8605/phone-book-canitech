@@ -21,3 +21,31 @@ body{
     flex-direction: column;
     align-items: center;
 }
+.container::after{
+    content:'';
+    position: absolute;
+    left: 29%;
+    top: 6%;
+    border-radius: 50%;
+    width: 160px;
+    height: 160px;
+    background: #fc5c7ca8;
+    z-index: -1;
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+}
+.container::before{
+    content:'';
+    position: absolute;
+    right: 26%;
+    bottom: 6%;
+    border-radius: 50%;
+    width: 160px;
+    height: 160px;
+    background: #6a82fbd0;
+    z-index: -1;
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+}
