@@ -1,21 +1,36 @@
 import React, {useState} from 'react'
 import './App.css';
-var phone=[
-  {
-    name:"Pavan"
-  },
-  {
-    name:'akshat'
-  },
-  {
-    name:'Bicky'
-  },
-  {
-    name:"ved"
-  }
-]
+
 function App() {
+  const [phone, setPhone]=useState([
+    {
+      name:"Pavan"
+    },
+    {
+      name:'akshat'
+    },
+    {
+      name:'Bicky'
+    },
+    {
+      name:"ved"
+    }
+  ])
   const [data, setData]=useState(phone);
+  const [route, setRoute]=useState("search");
+  const [addValue, setValue]=useState("");
+  
+  const onAdd=()=>{
+    var obj={
+      name:addValue
+    }
+    var tempPhone=[...phone];
+    tempPhone.push(obj);
+    setPhone(tempPhone);
+    setData(tempPhone)
+    
+  }
+
   const onChange=(value)=>{
     var filterArray=phone.filter((item)=>{
       console.log(item, value)
@@ -26,12 +41,31 @@ function App() {
     })
     console.log(filterArray);
     setData(filterArray)
-
   }
+
   return (
     <div className="App">
-      <input onChange={(event)=>{onChange(event.target.value)}} placeholder="Search"/>
-      {data.map(item=>(<div>{item.name}</div>))}
+      
+        {route==='search'?<input onChange={(event)=>{onChange(event.target.value)}} placeholder="Search"/>
+        :(<>
+        <input 
+          placeholder="New Name to add" 
+          onChange={
+            function(event){
+                setValue(event.target.value)
+            }
+          }
+            /><button onClick={onAdd}>Add</button></>)}
+        <div>
+            {route==="search"?
+              <button onClick={()=>{setRoute("add")}}>Add New Contact</button>
+              :
+              <button onClick={()=>{setRoute("search")}}>Goto Search</button>
+              }  
+        </div>
+      <div className="conatiner">
+        {data.map(item=>(<div className="card">{item.name}</div>))}
+      </div>
     </div>
   );
 }
