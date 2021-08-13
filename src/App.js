@@ -1,24 +1,38 @@
 import React, {useState} from 'react'
 import './App.css';
+import Profile from './component/profile'
+import Search from './component/search'
+
+import {
+ 
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 function App() {
   const [phone, setPhone]=useState([
     {
-      name:"Pavan"
+      name:"Pavan",
+      number:9823522
     },
     {
-      name:'akshat'
+      name:'akshat',
+      number:8600
     },
     {
-      name:'Bicky'
+      name:'Bicky',
+      number:8595
     },
     {
-      name:"ved"
+      name:"ved",
+      number:5884848
     }
   ])
   const [data, setData]=useState(phone);
   const [route, setRoute]=useState("search");
   const [addValue, setValue]=useState("");
+  const [selectedData, setSelected]=useState({})
   
   const onAdd=()=>{
     var obj={
@@ -43,30 +57,21 @@ function App() {
     setData(filterArray)
   }
 
+  onDelete=(i)=>{
+
+  }
+
   return (
-    <div className="App">
-      
-        {route==='search'?<input onChange={(event)=>{onChange(event.target.value)}} placeholder="Search"/>
-        :(<>
-        <input 
-          placeholder="New Name to add" 
-          onChange={
-            function(event){
-                setValue(event.target.value)
-            }
-          }
-            /><button onClick={onAdd}>Add</button></>)}
-        <div>
-            {route==="search"?
-              <button onClick={()=>{setRoute("add")}}>Add New Contact</button>
-              :
-              <button onClick={()=>{setRoute("search")}}>Goto Search</button>
-              }  
-        </div>
-      <div className="conatiner">
-        {data.map(item=>(<div className="card">{item.name}</div>))}
-      </div>
-    </div>
+   <div style={{textAlign:"center"}}>
+     <Switch>
+        <Route path="/profile">
+          <Profile data={selectedData}/>
+        </Route>
+          <Route path="/">
+            <Search onChange={onChange} setSelected={setSelected} route={route} setValue={setValue} onAdd={onAdd} setRoute={setRoute} data={data}/>
+          </Route>
+      </Switch>
+   </div>
   );
 }
 
